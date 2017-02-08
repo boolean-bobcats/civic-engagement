@@ -1,0 +1,33 @@
+{
+  "name": "civic-engagement",
+  "version": "1.0.0",
+  "description": "streamlined information about civic activities and opportunities to get involved, your civics portal",
+  "main": "index.js",
+  "dependencies": {
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcfungster/civic-engagement.git"
+  },
+  "keywords": [
+    "civics",
+    "government",
+    "protest",
+    "politics"
+  ],
+  "author": "boolean-bobcats",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mcfungster/civic-engagement/issues"
+  },
+  "homepage": "https://github.com/mcfungster/civic-engagement#readme"
+}
