@@ -2,8 +2,13 @@
   "name": "civic-engagement",
   "version": "1.0.0",
   "description": "streamlined information about civic activities and opportunities to get involved, your civics portal",
-  "main": "index.js",
-  "dependencies": {},
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.14.1",
+    "morgan": "^1.8.0"
+  },
   "devDependencies": {
     "eslint": "^3.15.0",
     "eslint-config-airbnb": "^14.1.0",
