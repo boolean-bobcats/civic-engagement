@@ -4,11 +4,17 @@
   "description": "streamlined information about civic activities and opportunities to get involved, your civics portal",
   "main": "server.js",
   "dependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-latest": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
     "body-parser": "^1.16.0",
     "dotenv": "^4.0.0",
     "express": "^4.14.1",
     "morgan": "^1.8.0",
-    "request": "^2.79.0"
+    "path": "^0.12.7",
+    "request": "^2.79.0",
+    "webpack": "^2.2.1"
   },
   "devDependencies": {
     "eslint": "^3.15.0",
