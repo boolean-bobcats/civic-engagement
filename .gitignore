@@ -38,3 +38,6 @@ jspm_packages
 
 # Local environment variables
 .env
+
+# babel-compiled file(s)
+www/bundle.js
