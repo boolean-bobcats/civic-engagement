@@ -2,36 +2,28 @@ import React from 'react';
 import ReduxPromise from 'redux-promise';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory, Link } from 'react-router';
+import { Router, Route, browserHistory, Link, IndexRoute } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 
-import Routes from './routes';
-import Reducers from './reducers';
+import rootReducer from './reducers';
+import resultsComp from './containers/reqContainer';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
-const store = createStoreWithMiddleware(Reducers);
 
+import locationBar from './components/locationBar';
+import req from './src/req';
+
+const store = createStore(rootReducer);
 const meow = function meow() {
   return (<div>
     <h1>welcome to meow!!</h1>
-    <Link to="/">home</Link>
   </div>);
 };
 
-// const home = function home() {
-//   return (<div>
-//     <h1>welcome to the home ppage!</h1>
-//     <Link to="/counter">Counter</Link>
-//     <br />
-//     <Link to="/req">Go to request</Link>
-//     <br />
-//     <Link to="/location">Rep Lookup</Link>
-//   </div>);
-// };
-
+console.log(store.getState())
 render((
-  <Provider store={store}>
-    <Router history={browserHistory} routes={Routes} />
-  </Provider>),
-  document.getElementById('root')
-);
+  <Provider store={createStoreWithMiddleware(rootReducer)}>
+    <Router history={browserHistory} >
+      <Route path="/" component={resultsComp} />
+    </Router>
+  </Provider>), document.getElementById('root'));

@@ -21,9 +21,9 @@ const Counter = React.createClass({
 });
 
 function mapStateToProps(state) {
-    return {
-        count: state
-    };
+  return {
+    count: state
+  };
 }
 
 function mapDispatchToProps(dispatch) {

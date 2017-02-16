@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ListView from './ListView';
 
-export default class GoogleList extends Component {
+class GoogleList extends Component {
   render() {
-    let GoogleResultsOffices = this.props.GoogleResults.offices || [];
-    let GoogleResultsOfficials = this.props.GoogleResults.officials || [];
+    console.log('in GoogleList, this.props', this.props.GoogleResults[0])
+    let GoogleResultsOffices = this.props.GoogleResults[0].offices || [];
+    let GoogleResultsOfficials = this.props.GoogleResults[0].officials || [];
 
     let GoogleResults = GoogleResultsOffices.map((Office, index) => {
       let key = Office._id || index;
@@ -24,3 +26,12 @@ export default class GoogleList extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    GoogleResults: state.GoogleResults
+  };
+}
+
+
+export default connect(mapStateToProps)(GoogleList);

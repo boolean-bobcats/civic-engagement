@@ -8,7 +8,8 @@ class ListView extends React.Component {
         <h3>Title </h3><span className="listViewItem">{this.props.title}</span>
         <h3>Party </h3><span className="listViewItem">{this.props.party}</span>
         <h3>Phone </h3><span className="listViewItem">{this.props.phone}</span>
-      </div>);
+      </div>
+    );
   }
 }
 
