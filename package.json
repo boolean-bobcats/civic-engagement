@@ -4,6 +4,7 @@
   "description": "streamlined information about civic activities and opportunities to get involved, your civics portal",
   "main": "index.js",
   "dependencies": {
+    "@google/maps": "^0.3.1",
     "axios": "^0.15.3",
     "body-parser": "^1.16.0",
     "dotenv": "^4.0.0",

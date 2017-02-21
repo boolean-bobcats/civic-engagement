@@ -4,10 +4,16 @@ import { Route, IndexRoute, Link } from 'react-router';
 // import ReqContainer from './containers/ReqContainer'
 import Req from './src/req';
 
+// <<<<<<< dev
+// import MapContainer from './containers/GoogleMapContainer';
+// import LocationBar from './components/locationBar';
+// import MenuContainer from './containers/sidebarContainer';
+// =======
 // import MapContainer from './containers/GoogleMapContainer';
 import LocationBar from './components/locationBar';
 import MenuContainer from './containers/sidebarContainer';
 import MapContainer from './containers/GoogleMapContainer-v2';
+// >>>>>>> dev
 import News from './components/newsList';
 
   // <Route path="map" component={MapContainer} />
