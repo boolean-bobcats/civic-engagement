@@ -18,6 +18,9 @@ export default function search(state = {}, action) {
 
       return { ...state, [name]: votes };
     }
+    case 'Top20_Search': {
+      return { ...state, Top20: action.payload.data };
+    }
     default:
       return state;
   }

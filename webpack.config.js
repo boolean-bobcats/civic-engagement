@@ -28,7 +28,14 @@ module.exports = {
         use: extractSass.extract({
           use: [
             'css-loader',
-            'sass-loader'
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: [
+                  './node_modules'
+                ]
+              }
+            }
           ],
           fallback: 'style-loader'
         })
@@ -38,5 +45,10 @@ module.exports = {
   plugins: [
     extractSass
   ],
-  devtool: 'source-map'
+  devtool: 'eval-source-map',
+  devServer: {
+    contentBase: APP_DIR,
+    compress: true,
+    port: 9000
+  }
 };

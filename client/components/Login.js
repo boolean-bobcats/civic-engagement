@@ -2,12 +2,19 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
+import { connect } from 'react-redux';
 
+const style = { minWidth: '600px', minHeight: '200' };
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', valid: false };
+    this.state = {
+      email: '',
+      password: '',
+      valid: false,
+      loggedIn: this.props.isLoggedIn
+    };
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -48,18 +55,27 @@ class Login extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit} >
-          <h2 >Please login</h2>
+          <h2>Please login</h2>
           <h3>E-mail</h3>
-          <input type="text" name="username" placeholder="Email Address" onChange={this.handleEmailChange} />
+          <input style= {style} type="text" name="username" placeholder="Email Address" onChange={this.handleEmailChange} />
           <h3>Password</h3>
-          <input type="password" name="password" placeholder="Password" onChange={this.handlePasswordChange} />
-          <input type="submit" value="Login"/>
+          <input style= {style} type="password" name="password" placeholder="Password" onChange={this.handlePasswordChange} />
+          <input type="submit" value="Login" />
         </form>
         {
-           this.state.valid ? <Redirect to={{ pathname: '/auth' }} /> : (null)
-         }
-      </div>)
+           this.state.valid || this.state.loggedIn === true ? <Redirect to={{ pathname: '/auth' }} /> : (null)
+        }
+      </div>);
   }
+
 }
 
-export default Login;
+
+function mapStateToProps(state) {
+  console.log('console.log state.loggedIn', state.LoggedIn);
+  return {
+    isLoggedIn: state.LoggedIn.loggedIn
+  };
+}
+
+export default connect(mapStateToProps)(Login);

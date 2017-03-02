@@ -59,7 +59,7 @@ const propublica = {
   memberVotes: (req, res) => {
     const name = req.params.name;
     const id = senateID[name] || houseID[name];
-    console.log('memberVotes: ', name, id, req.params);
+
     const url = `${BASE_URL}/members/${id}/votes.json`;
     const config = { url, headers };
 
@@ -77,7 +77,7 @@ const propublica = {
   memberBills: (req, res) => {
     const name = req.params.name;
     const id = senateID[name] || houseID[name];
-    console.log('memberBills: ', name, id, req.params);
+
     const url = `${BASE_URL}/members/${id}/bills/cosponsored.json`;
     const config = { url, headers };
 

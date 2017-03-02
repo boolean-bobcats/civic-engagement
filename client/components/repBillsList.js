@@ -10,9 +10,13 @@ import { bio as search } from '../actions/politicianSearchActions';
 class RepBillsList extends Component {
   constructor(props) {
     super(props);
-    // propublica lookup for 2 senators + rep
-    const { rep } = props;
 
+    if (props.rep && props.rep.bills) {
+      const { rep } = props;
+      const { bills } = rep;
+    }
+
+    // console.log('repBillsList! rep: ', rep, 'bills: ', bills);
   }
 
   render() {

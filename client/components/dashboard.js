@@ -1,5 +1,5 @@
 import React from 'react';
-import Map from '../containers/GoogleMapContainer-v2';
+import Map from '../containers/GoogleMapContainer';
 import Search from './meetupSearchBar';
 import EventList from './MeetupEventsList';
 

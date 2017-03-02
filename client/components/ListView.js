@@ -17,8 +17,9 @@ class ListView extends Component {
     };
   }
   componentWillReceiveProps(nextProps) {
-    // compare lengths for update conditional
-    if (nextProps.News[this.props.name]) {
+    // check if 'news' props is defined for update conditional
+    const { name, News } = this.props;
+    if (nextProps.News[name]) {
       // console.log(`recieved news for ${this.props.name}`);
       if (!this.state.searched) this.setState({ searched: true });
     }
