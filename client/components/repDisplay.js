@@ -75,6 +75,8 @@ class RepDisplay extends Component {
     // parse the correct obj from the GoogleResults
     const rep = reps.filter(({ name }) => name === this.state.current)[0];
 
+    // create a component-generating function for the grommet-box component
+    // to avoid repeating property assignments
     const BawksCreator = component => (
       <Box
         align='center'
@@ -82,40 +84,41 @@ class RepDisplay extends Component {
         margin='small'
         basis='medium'
       >
-        { component }
+        {component}
       </Box>
     );
 
     return (
       <div>
-        <Tabs>{ tabArray }</Tabs>
-        { this.state.current ? (
+        <Tabs>{tabArray}</Tabs>
+        {this.state.current ? (
           <Box
             direction='row'
             justify='center'
             full={true}
           >
-            { BawksCreator(
+            {BawksCreator(
               <RepBio
                 key={shortid.generate()}
                 bio={propublica[this.state.current]}
                 google={rep}
               />
             )}
-            { BawksCreator(
+            {BawksCreator(
               <RepVoteStatsLineGraph rep={propublica[this.state.current]} />
             )}
-            { BawksCreator(
+            {BawksCreator(
               <RepVoteStats rep={propublica[this.state.current]} />
             )}
           </Box>
         ) : (
-          <Box
-            align='center'
-          >
-            <Spinning /><br />fetching congressional activity
-          </Box>
-        )}
+            <Box
+              align='center'
+            >
+              <Spinning />
+              <div>fetching congressional activity</div>
+            </Box>
+          )}
       </div>
     );
   }
@@ -125,9 +128,9 @@ RepDisplay.defaultProps = {
   // propublica: Propublica,
   // reps: testReps
   reps: [
-      { name: 'Charles E. Schumer' },
-      { name: 'Kirsten E. Gillibrand' },
-      { name: 'Carolyn B. Maloney' }
+    { name: 'Charles E. Schumer' },
+    { name: 'Kirsten E. Gillibrand' },
+    { name: 'Carolyn B. Maloney' }
   ]
 };
 

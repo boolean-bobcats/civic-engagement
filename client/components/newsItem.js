@@ -9,7 +9,7 @@ import LinkIcon from 'grommet/components/icons/base/Link';
 // class NewsItem extends Component {
 const NewsItem = (props) => {
   const { title, blurb, thumb, url } = props;
-  console.log('news items props: ', props);
+  // console.log('news items props: ', props);
   return (
     <div>
       <img alt="thumbnail" src={thumb} />

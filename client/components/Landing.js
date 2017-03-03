@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+
 import Box from 'grommet/components/Box';
 import Header from 'grommet/components/Header';
 import Button from 'grommet/components/Button';
@@ -14,10 +16,12 @@ import SearchInput from 'grommet/components/SearchInput';
 import Heading from 'grommet/components/Heading';
 import HeaderContainer from '../containers/headerContainer';
 
+import meetupSearch from '../actions/meetupSearchActions';
+
 
 class Landing extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
     this.state = {
       input: '',
       searchVisibility: false
@@ -40,12 +44,20 @@ class Landing extends Component {
 
   onSubmit(event) {
     event.preventDefault();
+    this.props.meetupSearch(this.state.input);
+    this.context.router.push('/dashboard');
   }
 
 
   render() {
     return (
       <Article scrollStep={true}>
+        <Header size="small" float={false} fixed={true}>
+          <Box direction="row" align="center" pad={{ between: "small" }} className="landing-login-header">
+            <Button label="Login" href="/login" path="login" />
+            <Button label="Sign Up" href="/signup" path="signup" />
+          </Box>
+        </Header>
 
         <Header className="landing-main-nav" size="small" float={false} fixed={true}>
           <HeaderContainer />
@@ -117,4 +129,14 @@ class Landing extends Component {
   }
  }
 
-export default Landing;
+Landing.contextTypes = {
+  router: PropTypes.object
+};
+
+function mapStateToProps(state) { // Temporary state setup. Please feel free to modify this.
+  return {
+    EventLocation: state.input
+  };
+}
+
+export default connect(mapStateToProps, { meetupSearch })(Landing);

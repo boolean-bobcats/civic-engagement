@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // import search from '../actions/politicianSearchActions';
-import Card from 'grommet/components/Card';
 import Layer from 'grommet/components/Layer';
 import Spinning from 'grommet/components/icons/Spinning';
 
@@ -31,7 +30,7 @@ class ListView extends Component {
   }
 
   handleClick() {
-    console.log('clicky clicky', this.props.name);
+    // console.log('clicky clicky', this.props.name);
     this.setState({ visible: !this.state.visible });
 
     if (!this.state.searched) {
@@ -42,23 +41,30 @@ class ListView extends Component {
   }
 
   render() {
+    const { name, title, party, phone } = this.props;
     return (
       <div>
-        <h3>Name </h3><span className="listViewItem">{this.props.name}</span>
-        <h3>Title </h3><span className="listViewItem">{this.props.title}</span>
-        <h3>Party </h3><span className="listViewItem">{this.props.party}</span>
-        <h3>Phone </h3><span className="listViewItem">{this.props.phone}</span>
         <br />
+        <span>Name</span>
+        <h3>{ name }</h3>
+        <span>Title</span>
+        <h3>{ title }</h3>
+        <span>Party</span>
+        <h3>{ party }</h3>
+        <span>Phone</span>
+        <h3>{ phone }</h3>
         <button onClick={() => this.handleClick()}>In the news...</button>
         { this.state.visible ?
           (<Layer
-              closer={true}
-              onClose={() => this.setState({ visible: false })}
+            closer={true}
+            onClose={() => this.setState({ visible: false })}
           >
             { this.state.searched ? (
               <NewsList news={this.props.News[this.props.name]} />
               ) : (
-                <Spinning />
+                <Spinning
+                  size="huge"
+                />
               )
             }
           </Layer>

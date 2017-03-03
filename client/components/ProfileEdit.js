@@ -11,7 +11,7 @@ import Paragraph from 'grommet/components/Paragraph';
 import { setLoggedIn } from '../actions/loggingActions';
 import ImageUpload from './ImageUpload';
 import submitLoc from '../actions/locationBarActions';
-import Header from '../containers/HeaderContainer';
+import Header from '../containers/headerContainer';
 import stableHeader from '../components/stableHeader';
 
 const profileSidebarStyle = {

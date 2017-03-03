@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 
+import Card from 'grommet/components/Card';
 import Box from 'grommet/components/Box';
+import Columns from 'grommet/components/Columns';
 
 import ListView from './ListView';
 
@@ -16,9 +18,9 @@ class GoogleList extends Component {
     if(data.GoogleResults){
       let GoogleResultsOffices = data.GoogleResults.offices;
       let GoogleResultsOfficials = data.GoogleResults.officials;
-      console.log(GoogleResultsOffices, "GoogleResultsOffices");
+      // console.log(GoogleResultsOffices, "GoogleResultsOffices");
       let GoogleResults = GoogleResultsOffices.map((Office, index) => {
-        let key = Office._id || index
+        let key = shortid.generate();
         let profile = GoogleResultsOfficials[Office.officialIndices[0]] || "N/A"
         let title = Office.name || "N/A"
         let name = profile.name || "N/A"
@@ -29,9 +31,8 @@ class GoogleList extends Component {
         // this.props.search(name);
 
         return (
-          <Box>
+          <Box key={key} >
             <ListView
-              key={key} 
               title={title} 
               name={name} 
               party={party} 
@@ -42,9 +43,9 @@ class GoogleList extends Component {
       });
 
       return (
-        <Box className="GoogleList">
+        <Columns>
           {GoogleResults}
-        </Box>
+        </Columns>
       );
     }
     // if the GoogleResults property doesn't exist, return an empty div

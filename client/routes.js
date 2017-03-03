@@ -57,14 +57,13 @@ const testing = function testing() {
 };
 
 export default (
-  <Route path="/">
-    <IndexRoute component={home} />
+  <Route path="/" >
+    <IndexRoute component={Landing} />
     <Route path="req" component={Req} />
     <Route path="location" component={LocationBar} />
     <Route path="map" component={MapContainer} />
     <Route path="menuAnd" component={MenuContainer} />
     <Route path="news" component={News} />
-    <Route path="map" component={MapContainer} />
     <Route path="dashboard" component={Dashboard} />
     <Route path="testing" component={testing} />
     <Route path="login" component={Login} />
@@ -73,7 +72,7 @@ export default (
     <Route path="congress" component={CongressContainer} />
     <Route path="top20" component={Top20} />
     <Route path="header" component={HeaderContainer} />
-    <Route path="landing" component={Landing} />
+    <Route path="directory" component={home} />
     <Route path="*" component={PageNotFound} />
   </Route>
 );
