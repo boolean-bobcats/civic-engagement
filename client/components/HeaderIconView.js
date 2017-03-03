@@ -20,13 +20,13 @@ const style = {
     boxShadow: '0px 0px 150px #000000',
     zIndex: 2,
     WebkitTransition: 'all 200ms ease-in',
-    WebkitTransform: 'scale(1.5)',
+    WebkitTransform: 'scale(1.1)',
     MsTransition: 'all 200ms ease-in',
-    MsTransform: 'scale(1.5)',
+    MsTransform: 'scale(1.1)',
     MozTransition: 'all 200ms ease-in',
-    MozTransform: 'scale(1.5)',
+    MozTransform: 'scale(1.1)',
     transition: 'all 200ms ease-in',
-    transform: 'scale(1.5)'
+    transform: 'scale(1.1)'
   }
 };
 
@@ -36,7 +36,8 @@ class HeaderIconView extends React.Component {
     return (
       <div style={style}>
         <Link to={this.props.route}>
-          <img src={this.props.url} />
+          <img style={{ height:'70px', width: '70px' }} src={this.props.url} />
+          <br />
           {this.props.description}
         </Link>
       </div>

@@ -11,11 +11,11 @@ const divStyle = {
 };
 
 const iconUrls = [
-  ["http://www.webarti.com/projects/images/palette-ninja.png", "Profile", 'routeTBD'],
-  ["http://www.webarti.com/projects/images/palette-ninja.png", "Your Reps", 'routeTBD'],
-  ["http://www.webarti.com/projects/images/palette-ninja.png", "Map", '/map'],
-  ["http://www.webarti.com/projects/images/palette-ninja.png", "Events", 'routeTBD'],
-  ["http://www.webarti.com/projects/images/palette-ninja.png", "Friends", 'routeTBD']
+  ["https://www.shareicon.net/data/128x128/2016/08/04/806712_megaphone_512x512.png", "  EVENTS", '/map'],
+  ["http://icons.iconarchive.com/icons/designcontest/ecommerce-business/128/news-icon.png", "  NEWS", 'routeTBD'],
+  ["http://icons.iconarchive.com/icons/webalys/kameleon.pics/128/Graph-Magnifier-icon.png", "  CHARTS", 'routeTBD'],
+  ["http://icons.iconarchive.com/icons/aha-soft/large-home/128/Goverment-icon.png", "  REPS", 'routeTBD'],
+  ["http://icons.iconarchive.com/icons/webalys/kameleon.pics/128/Settings-2-icon.png", "  PROFILE", 'routeTBD']
 ];
 
 

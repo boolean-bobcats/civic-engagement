@@ -12,7 +12,7 @@ class HeaderView extends Component {
       });
 
       return (
-        <div className="header" style={{ width: '1000px', align: 'center' }}>
+        <div className="header" style={{ width: '1000px', paddingTop: '25px' }}>
           {header}
         </div>
       );

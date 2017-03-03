@@ -3,7 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // import search from '../actions/politicianSearchActions';
+import Card from 'grommet/components/Card';
+import Layer from 'grommet/components/Layer';
+import Spinning from 'grommet/components/icons/Spinning';
+
 import { nytimes, bingNews } from '../actions/politicianSearchActions';
+
 
 import NewsList from './newsList';
 
@@ -46,12 +51,17 @@ class ListView extends Component {
         <br />
         <button onClick={() => this.handleClick()}>In the news...</button>
         { this.state.visible ?
-          (
-          this.state.searched ? (
-            <NewsList news={this.props.News[this.props.name]} />
-            ) : (
-              <div>loading...</div>
-            )
+          (<Layer
+              closer={true}
+              onClose={() => this.setState({ visible: false })}
+          >
+            { this.state.searched ? (
+              <NewsList news={this.props.News[this.props.name]} />
+              ) : (
+                <Spinning />
+              )
+            }
+          </Layer>
           ) : (
             <div />
           )

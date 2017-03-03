@@ -10,11 +10,14 @@ import AccordionPanel from 'grommet/components/AccordionPanel';
 import Paragraph from 'grommet/components/Paragraph';
 import { setLoggedIn } from '../actions/loggingActions';
 import ImageUpload from './ImageUpload';
+import submitLoc from '../actions/locationBarActions';
+import Header from '../containers/HeaderContainer';
+import stableHeader from '../components/stableHeader';
 
 const profileSidebarStyle = {
   position: 'absolute',
   right: '75px',
-  top: '100px',
+  top: '260px',
   width: '300px',
   border: '3px solid',
   padding: '10px',
@@ -27,15 +30,16 @@ const inputStyle = {
 };
 
 const profileInfoStyle = {
-  paddingTop: '30',
+  paddingTop: '15px',
   paddingLeft: '150px',
   paddingBottom: '60px'
 };
 
 const editPanelStyle = {
-  paddingLeft: '110px',
-  paddingTop: '30px',
-  paddingBottom: '50px'
+  paddingLeft: '160px',
+  paddingTop: '100px',
+  paddingBottom: '50px',
+  paddingRight: '170px'
 };
 
 function mapStateToProps(state) {
@@ -45,7 +49,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ setLoggedIn }, dispatch);
+  return bindActionCreators({ setLoggedIn, submitLoc }, dispatch) 
 }
 
 class ProfileEdit extends Component {
@@ -86,6 +90,10 @@ class ProfileEdit extends Component {
     this.setState({ location: e.target.value });
   }
 
+  componentWillMount(){
+    this.props.submitLoc(this.props.UserData.location);
+  }
+
   handleSubmit() {
     Axios.post('/api/users/update', {
       location: this.state.location,
@@ -116,62 +124,62 @@ class ProfileEdit extends Component {
     return (
 
     <div>
-      <h1 style={{ textAlign: 'center' }}> Welcome to your profile </h1>
-      <div>
-        <div style={profileSidebarStyle}>
-          { this.state.image ? <img src={this.state.image} /> : null }
-          <em>{this.props.UserData.username}</em>
-          <br />
-          profile created on:
-          <br />
-          {dateFormat(this.props.UserData.createdAt)}
-          <br />
-          <button style={{ float: 'right' }}onClick={this.handleLogout} >Logout </button>
-        </div>
-        <div style={profileInfoStyle}>
-          <p className='profileTopic' >Top 3 Issues I care about </p>
-          <div> {this.props.UserData.issues || 'n/a'} </div>
-          <p className='profileTopic'>Top Quote</p>
-          <div>{this.props.UserData.quote || 'n/a'}</div>
-          <p className='profileTopic'>Who I Am</p>
-          <div>{this.props.UserData.aboutme || 'n/a'}</div>
-          <p className='profileTopic'>Location</p>
-          <div>{this.props.UserData.location || 'n/a'}</div>
-        </div>
-      </div>
-      <div style={editPanelStyle}>
-        <form onSubmit={this.handleSubmit} >
-          <Accordion>
-            <AccordionPanel heading="Edit Issues">
-              <Paragraph>
-                <input style={inputStyle} type="text" name="issues" value={this.state.issues} placeholder="Issues" onChange={this.handleIssuesChange} />
-              </Paragraph>
-            </AccordionPanel>
-            <AccordionPanel heading="Edit Top Quote">
-              <Paragraph>
-                <input style={inputStyle} type="text" name="quote" value={this.state.quote} placeholder="Quote" onChange={this.handleQuoteChange} />
-              </Paragraph>
-            </AccordionPanel>
-            <AccordionPanel heading="Edit Who I Am">
-              <Paragraph>
-                <input style={inputStyle} type="text" name="aboutMe" value={this.state.aboutme} placeholder="About Me" onChange={this.handleAboutMeChange} />
-              </Paragraph>
-            </AccordionPanel>
-            <AccordionPanel heading="Edit Location">
-              <Paragraph>
-                <input style={inputStyle} type="text" name="aboutMe" value={this.state.location} placeholder="Location" onChange={this.handleAboutMeChange} />
-              </Paragraph>
-              </AccordionPanel>
-            <AccordionPanel heading="Edit Profile Photo">
-              <Paragraph>
-                <ImageUpload />
-              </Paragraph>
-            </AccordionPanel>
-          </Accordion>
-          <input style={{ paddingTop: '20px', paddingBottom: '20px' }} type="submit" value="Submit Changes" />
-        </form>
-        { !this.state.log ? <Redirect to={{ pathname: '/' }} /> : null }
-      </div>
+      <Header />
+        <div style={{ paddingTop: '70px' }} />
+          <h1 style={{ textAlign: 'center' }}> Welcome to your profile </h1>
+          <div>
+            <div style={profileSidebarStyle}>
+              { this.state.image ? <img src={this.state.image} /> : null }
+              <h4 style={{ fontFamily: 'verdana', textAlign: 'right', backgroundColor: 'lightgray' }}>{this.props.UserData.username}</h4>
+              <br />
+              profile created on:
+              <h5>{dateFormat(this.props.UserData.createdAt)}</h5>
+              <button style={{ float: 'right' }}onClick={this.handleLogout} >Logout </button>
+            </div>
+            <div style={profileInfoStyle}>
+              <p className='profileTopic' >Top 3 Issues I care about </p>
+              <div style={{ paddingLeft: '40px' }}> {this.props.UserData.issues || 'n/a'} </div>
+              <p className='profileTopic'>Top Quote</p>
+              <div style={{ paddingLeft: '40px' }}>{this.props.UserData.quote || 'n/a'}</div>
+              <p className='profileTopic'>Who I Am</p>
+              <div style={{ paddingLeft: '40px' }}>{this.props.UserData.aboutme || 'n/a'}</div>
+              <p className='profileTopic'>Location</p>
+              <div style={{ paddingLeft: '40px' }}>{this.props.UserData.location || 'n/a'}</div>
+            </div>
+          </div>
+          <div style={editPanelStyle}>
+            <form onSubmit={this.handleSubmit} >
+              <Accordion>
+                <AccordionPanel heading="Edit Issues">
+                  <Paragraph>
+                    <textarea style={inputStyle} type="text" name="issues" value={this.state.issues} placeholder="Issues" onChange={this.handleIssuesChange} />
+                  </Paragraph>
+                </AccordionPanel>
+                <AccordionPanel heading="Edit Top Quote">
+                  <Paragraph>
+                    <textarea style={inputStyle} type="text" name="quote" value={this.state.quote} placeholder="Quote" onChange={this.handleQuoteChange} />
+                  </Paragraph>
+                </AccordionPanel>
+                <AccordionPanel heading="Edit Who I Am">
+                  <Paragraph>
+                    <textarea style={inputStyle} type="text" name="aboutMe" value={this.state.aboutme} placeholder="About Me" onChange={this.handleAboutMeChange} />
+                  </Paragraph>
+                </AccordionPanel>
+                <AccordionPanel heading="Edit Location">
+                  <Paragraph>
+                    <textarea style={inputStyle} type="text" name="aboutMe" value={this.state.location} placeholder="Location" onChange={this.handleAboutMeChange} />
+                  </Paragraph>
+                  </AccordionPanel>
+                <AccordionPanel heading="Edit Profile Photo">
+                  <Paragraph>
+                    <ImageUpload />
+                  </Paragraph>
+                </AccordionPanel>
+              </Accordion>
+              <input style={{ paddingTop: '20px', paddingBottom: '20px' }} type="submit" value="Submit Changes" />
+            </form>
+            { !this.state.log ? <Redirect to={{ pathname: '/' }} /> : null }
+          </div>
     </div>
 
     );

@@ -2,6 +2,13 @@ import React from 'react';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import Form from 'grommet/components/Form';
+import Header from 'grommet/components/Header';
+import Heading from 'grommet/components/Heading';
+import FormFields from 'grommet/components/FormFields';
+import Footer from 'grommet/components/Footer';
+import Button from 'grommet/components/Button';
+import Header2 from '../containers/HeaderContainer';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -72,29 +79,40 @@ class Signup extends React.Component {
     });
   }
 
+
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit} >
-          <h2>Please signup</h2>
-          <h3>E-mail</h3>
-          <input type="text" name="username" placeholder="Email Address" onChange={this.handleEmailChange} />
-          <h3>Password</h3>
-          <input type="password" name="password" placeholder="Password" onChange={this.handlePasswordChange} />
-          <h3>Location or Zip</h3>
-          <input type="text" name="location" placeholder="Location" onChange={this.handleLocationChange} />
-          <h3>Top 3 Issues I Care About</h3>
-          <input type="text" name="issues" placeholder="Issues" onChange={this.handleIssuesChange} />
-          <h3>Favorite Quote</h3>
-          <input type="text" name="quote" placeholder="Quote" onChange={this.handleQuoteChange} />
-          <h3>Who I Am</h3>
-          <input type="text" name="AboutMe" placeholder="About Me" onChange={this.handleAboutMeChange} />
-          <br />
-          <input type="submit" value="Signup" />
-        </form>
-        {
-           this.state.valid ? <Redirect to={{ pathname: '/auth' }} /> : null
-         }
+        <Header2 />
+          <div style={{ width: '800px', margin: '0 auto', border: '10px #35FEFE', paddingTop: '55px'}}>
+            <form onSubmit={this.handleSubmit} >
+              <h1 style={{ fontFamily: "Work Sans", fontWeight: '500', paddingTop: '30px'}} >Civics Portal </h1>
+              <h4>let&apos;s make local politics sexy. </h4>
+              <h2 style={{ paddingTop: '20px', color: '#35FEFE', fontWeight: '400' }}>Please signup</h2>
+              <div style={{ paddingLeft: '10%', paddingRight: '25%' }}>
+                <h3>E-mail</h3>
+                <input type="text" name="username" placeholder="Email Address" onChange={this.handleEmailChange} />
+                <br />
+                <h3>Password</h3>
+                <input type="password" name="password" placeholder="Password" onChange={this.handlePasswordChange} />
+                <br />
+                <h3>Location or Zip</h3>
+                <textarea style={{ minWidth: '600px' }} type="text" name="location" placeholder="Location" onChange={this.handleLocationChange} />
+                <br />
+                <h3>Top 3 Issues I Care About</h3>
+                <textarea style={{ minWidth: '600px' }} type="text" name="issues" placeholder="Issues" onChange={this.handleIssuesChange} />
+                <br />
+                <h3>Favorite Quote</h3>
+                <textarea style={{ minWidth: '600px' }} type="text" name="quote" placeholder="Quote" onChange={this.handleQuoteChange} />
+                <br />
+                <h3>Who I Am</h3>
+                <textarea style={{ minWidth: '600px' }} type="text" name="AboutMe" placeholder="About Me" onChange={this.handleAboutMeChange} />
+                <br />
+                <br />
+                <input style={{ textAlign: 'center' }} type="submit" value="Signup" />
+              </div>
+            </form>
+        </div>
       </div>);
   }
 }

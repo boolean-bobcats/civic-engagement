@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import shortid from 'shortid';
+
+import Box from 'grommet/components/Box';
+
 import ListView from './ListView';
+
 // import search from '../actions/politicianSearchActions';
 
 class GoogleList extends Component {
@@ -24,19 +29,22 @@ class GoogleList extends Component {
         // this.props.search(name);
 
         return (
-          <ListView
-            key={key} 
-            title={title} 
-            name={name} 
-            party={party} 
-            phone={phoneNum} 
-          />);
+          <Box>
+            <ListView
+              key={key} 
+              title={title} 
+              name={name} 
+              party={party} 
+              phone={phoneNum} 
+            />
+          </Box>
+        );
       });
 
       return (
-        <div className="GoogleList">
+        <Box className="GoogleList">
           {GoogleResults}
-        </div>
+        </Box>
       );
     }
     // if the GoogleResults property doesn't exist, return an empty div

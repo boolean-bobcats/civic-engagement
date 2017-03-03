@@ -1,9 +1,13 @@
+@import 'top20.scss';
+@import 'landing.scss';
+
 #root, .App {
-  height: 100%;
+  height: 95%;
   width: 100%;
 }
 
 body {
+  height: 95%;
   margin: 0px;
 }
 
@@ -11,30 +15,83 @@ body {
   display: flex;
   flex-direction: row;
 }
+.dashboard-header {
 
-.dashboard-side {
-  max-width: 400px;
 }
 
-.meetup-map {
+.dashboard-side {
+  // max-width: 400px;
+  height: 100%;
+}
+
+section:not(.grommetux-section).meetup-map {
+  padding-bottom: 0px;
+}
+
+.dashboard-split {
+  height: calc(100% - 72px);
+}
+
+.meetup-searchbar {
+  width: 100%;
+  input {
+    width: 100%;
+  }
 }
 
 .meetup-events-list {
   height: 100%;
+  margin: 0px 12px;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .meetup-list-item {
-  border: 1px solid #333333;
   word-wrap: break-word;
 }
 
-.top20-console {
-  height: 100%;
-  width: 100%;
+// .top20-console {
+//   height: 100%;
+//   width: 100%;
+// }
+//
+// .top20-main {
+//   height: calc(100% - 48px);
+//   margin: 12px;
+// }
+
+.grommetux-heading--strong {
+  font-weight: 500;
+  background-color: white;
+  padding: 5px 5px 5px 5px;
+  border: strong
 }
 
-.profileTopic {
-  color: #333;
+grommetux-paragraph {
+  background-color: white
+}
+
+.rep-focus {
+  width: 500px;
+}
+
+.rep-photo {
+  border-radius: 5px;
+  width: 75%;
+}
+.rep-bio {
+  img {
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 1.7em;
+    margin-top: .35em;
+    margin-bottom: 0px;
+  }
+
+  a {
+    margin-top: .25em;
+  }
 }

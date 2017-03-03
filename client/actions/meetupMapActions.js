@@ -1,4 +1,5 @@
 export function toggleInfoWindow(event, loc) {
+  console.log('Toggle being triggered');
   let update = {};
   if (loc === null) {
     update.windowPosition = null;

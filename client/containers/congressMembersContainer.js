@@ -16,7 +16,7 @@ const CongressMembersContainer = (props) => {
     // const { reps } = this.props;
   return (
     <div>
-      <LocationBar />
+      {/*<LocationBar />*/}
       <RepDisplay />
       {/*<RepDisplay reps={reps} />*/}
     </div>

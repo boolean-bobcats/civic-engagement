@@ -15,7 +15,8 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Auth from './components/Auth';
 import Top20 from './components/Top20Wrapper';
-
+import HeaderContainer from './containers/headerContainer';
+import Landing from './components/Landing';
 // import MapContainer from './containers/GoogleMapContainer';
 // import LocationBar from './components/locationBar';
 // import MenuContainer from './containers/sidebarContainer';
@@ -26,10 +27,6 @@ import CongressContainer from './containers/congressMembersContainer';
 const home = function home() {
   return (<div>
     <h1>welcome to the home page!</h1>
-    <Link to="/counter">Counter</Link>
-    <br />
-    <Link to="/req">Go to request</Link>
-    <br />
     <Link to="/location">Rep Lookup</Link>
     <br />
     <Link to="/menuAnd">Menu with header </Link>
@@ -40,8 +37,6 @@ const home = function home() {
     <br />
     <Link to="/header">Header</Link>
     <br />
-    <Link to="/testing">Testing</Link>
-    <br />
     <Link to="/login">Login</Link>
     <br />
     <Link to="/signup">Signup</Link>
@@ -49,6 +44,8 @@ const home = function home() {
     <Link to="/congress">Congress!</Link>
     <br />
     <Link to="/top20">Campaign Finance Top 20 Lists</Link>
+    <br />
+    <Link to="/landing">Landing Page</Link>
   </div>);
 };
 
@@ -75,6 +72,8 @@ export default (
     <Route path="auth" component={Auth} />
     <Route path="congress" component={CongressContainer} />
     <Route path="top20" component={Top20} />
+    <Route path="header" component={HeaderContainer} />
+    <Route path="landing" component={Landing} />
     <Route path="*" component={PageNotFound} />
   </Route>
 );

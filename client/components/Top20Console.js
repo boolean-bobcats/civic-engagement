@@ -4,18 +4,32 @@ import { connect } from 'react-redux';
 import Chart from './Top20Chart';
 import top20Search from '../actions/top20SearchActions';
 import { categories, cycles } from '../constants/top20SelectorOptions';
+import Spinning from 'grommet/components/icons/Spinning';
+import Select from 'grommet/components/Select';
+import Form from 'grommet/components/Form';
+import FormField from 'grommet/components/FormField';
 
 
 class Top20Console extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: 'contribution-total',
+      category: {
+        value: 'contribution-total',
+        label: 'Total Raised'
+      },
+      // 'contribution-total'
       catKey: 'total_contributions',
-      cycle: '2016'
+      // cycle: '2016'
+      cycle: {
+        value: '2016',
+        label: '2016'
+      }
     };
     this.catHandleChange = this.catHandleChange.bind(this);
     this.cycleHandleChange = this.cycleHandleChange.bind(this);
+    this.catHandleChangeNew = this.catHandleChangeNew.bind(this);
+    this.cycleHandleChangeNew = this.cycleHandleChangeNew.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -42,6 +56,16 @@ class Top20Console extends Component {
     });
   }
 
+  catHandleChangeNew(event) {
+    let key = categories.find((el) => {
+      return el[0] === event.option.value;
+    });
+    this.setState({
+      category: event.option,
+      catKey: key[1]
+    });
+  }
+
   cycleHandleChange(event) {
     console.log('current cycle ', this.state.cycle);
     console.log('new cycle ', event.target.value);
@@ -49,6 +73,18 @@ class Top20Console extends Component {
       cycle: event.target.value
     });
   }
+
+  cycleHandleChangeNew(event) {
+    console.log('current cycle ', this.state.cycle);
+    console.log('new cycle ', event.target.value);
+    this.setState({
+      cycle: event.option
+    });
+  }
+
+
+//   onChange      {function ({target: , option: , value: })}
+// Function that will be called when the user selects an option. The target corresponds to the embedded input element, allowing you to distinguish which component triggered the event. The option contains the object chosen from the supplied options. The value contains all selected options when multiple={true}.
 
   // handleSubmit(event) {
   //   event.preventDefault();
@@ -66,6 +102,19 @@ class Top20Console extends Component {
       )
     );
 
+    const catOptionsNew = categories.map((category) => {
+      return {
+        value: category[0],
+        label: category[3]
+      };
+    });
+    const cycleOptionsNew = cycles.map((cycle) => {
+      return {
+        value: cycle,
+        label: cycle
+      };
+    });
+
     if (this.props.data && this.props.data.results) {
       const results = this.props.data.results;
       const spend = results.map((candidate, index) => {
@@ -78,9 +127,36 @@ class Top20Console extends Component {
           )
       });
 
+
+
+
+      // pad       none|small|medium|large|{...}
+      // The amount of padding to put around the contents. An object can be specified to distinguish horizontal and vertical padding: {horizontal: none|small|medium|large, vertical: none|small|medium|large}. Defaults to none.
       return (
         <div className="top20-console">
-          <div className="row">
+          <Form
+            className="row"
+          >
+            <Select
+              value={this.state.category}
+              onChange={this.catHandleChangeNew}
+              options={catOptionsNew}
+              placeHolder="Select Category"
+              className="top20-category-selector"
+            />
+            <Select
+              value={this.state.cycle}
+              onChange={this.cycleHandleChangeNew}
+              options={cycleOptionsNew}
+              placeHolder="Election Cycle"
+              className="top20-cycle-selector"
+            />
+
+
+
+
+          </Form>
+          {/* <div className="row">
             <form>
               <label>
                   Category:
@@ -95,23 +171,30 @@ class Top20Console extends Component {
                   </select>
               </label>
             </form>
-          </div>
-          <div>
+          </div> */}
+          {/* <div> */}
             <Chart
               data={this.props.data.results}
               search={this.state.catKey}
             />
-          </div>
+          {/* </div> */}
         </div>
       );
     }
     return (
       <div>
-        <h3>Loading</h3>
+        <Spinning />
+        <span>Loading</span>
       </div>
     );
   }
 
+
+  // import Select from 'grommet/components/Select';
+  // <Select placeHolder='None'
+  //   options={['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight']}
+  //   value={undefined}
+  //   onChange={...} />
 
     // if (this.props.data) {
     //   const results = this.props.data.results;

@@ -38,6 +38,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.14.1",
     "grommet": "^1.2.1",
+    "grommet-cli": "^3.0.0",
     "history": "^4.5.1",
     "jquery-param": "^0.2.0",
     "js-cookie": "^2.1.3",

@@ -16,16 +16,49 @@ const dataSet = {
   labels: [],
   datasets: [
     {
-      // label: 'My First dataset',
+      label: 'U.S. Dollars',
       backgroundColor: 'rgba(255,99,132,0.2)',
       borderColor: 'rgba(255,99,132,1)',
       borderWidth: 1,
       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
       hoverBorderColor: 'rgba(255,99,132,1)',
+      hoverBorderWidth: 4,
       data: []
     }
   ]
 };
+
+
+// render() {
+    // const data = (canvas) => {
+    //     const ctx = canvas.getContext("2d")
+    //     const gradient = ctx.createLinearGradient(0,0,100,0);
+//         ...
+//         return {
+//             ...
+//             backgroundColor: gradient
+//             ...
+//         }
+//     }
+//
+//     return (
+//         <Line data={data} />
+//     )
+// }
+//
+// grd = ctx.createLinearGradient(0.000, 150.000, 300.000, 150.000);
+//
+//      // Add colors
+//      grd.addColorStop(0.000, 'rgba(86, 68, 68, 1.000)');
+//      grd.addColorStop(1.000, 'rgba(249, 242, 242, 1.000)');
+//      grd.addColorStop(1.000, 'rgba(255, 255, 255, 0.000)');
+//
+//      // Fill with gradient
+//      ctx.fillStyle = grd;
+//      ctx.fillRect(0, 0, 300.000, 300.000);
+
+
+
 
 const options = {};
 

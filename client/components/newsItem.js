@@ -1,20 +1,30 @@
 // import React, { Component } from 'react';
 import React from 'react';
 
+import Title from 'grommet/components/Title';
+import Paragraph from 'grommet/components/Paragraph';
+import Anchor from 'grommet/components/Anchor';
+import LinkIcon from 'grommet/components/icons/base/Link';
+
 // class NewsItem extends Component {
 const NewsItem = (props) => {
-  const debugStyle = {
-    border: 'solid blue 2px'
-  };
   const { title, blurb, thumb, url } = props;
-
+  console.log('news items props: ', props);
   return (
-    <li style={debugStyle}>
+    <div>
       <img alt="thumbnail" src={thumb} />
-      <h1>{ title }</h1>
-      <span>{ blurb }</span>
-      <a href={url}>Link</a>
-    </li>
+      <h3>{ title }</h3>
+      <Paragraph>{ blurb }</Paragraph>
+      <Anchor
+        icon={<LinkIcon />}
+        label={'Read more...'}
+        target={'_blank'}
+        reverse={true}
+        size={'large'}
+        animateIcon={true}
+        href={`${url}`}
+      />
+    </div>
   );
 };
 

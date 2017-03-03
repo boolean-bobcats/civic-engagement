@@ -1,21 +1,33 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ListItem from './MeetupEventListItem';
+import Accordion from 'grommet/components/Accordion';
+import AccordionPanel from 'grommet/components/AccordionPanel';
+
 
 class EventListComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
   componentDidUpdate(prevProps) {
     console.log('In MeetupEvenList Component Did Update');
+
     const old = prevProps.InfoWindow.current_event.id;
+
     const current = this.props.InfoWindow.current_event.id;
+
     if (old === current && !this.props.InfoWindow.showInfoWindow) { return; }
-    const el = document.getElementById('selected');
+
+    const el = document.getElementsByClassName('selected');
     console.log(el);
-    el.scrollIntoView({ block: 'end', behavior: 'smooth' });
+
+    el[0].scrollIntoView({ block: 'end', behavior: 'smooth' });
+
   }
+
+
   render() {
     const { results } = this.props.events;
     const selected = this.props.InfoWindow.current_event.id;
@@ -28,29 +40,52 @@ class EventListComponent extends Component {
         };
         if (event.id === selected && this.props.InfoWindow.showInfoWindow) {
           return (
+            <AccordionPanel
+              heading={event.name}
+              key={event.id}
+              className="selected"
+              style={styling}
+            >
+              <ListItem
+                key={event.id}
+                event={event}
+                index={index}
+                style={styling}
+                id="selected"
+              />
+            </AccordionPanel>
+          );
+        }
+        return (
+          <AccordionPanel
+            heading={event.name}
+            key={event.id}
+          >
             <ListItem
               key={event.id}
               event={event}
               index={index}
-              style={styling}
-              id="selected"
             />
-          );
-        }
-        return (
-          <ListItem
-            key={event.id}
-            event={event}
-            index={index}
-          />
+          </AccordionPanel>
         );
       });
     }
 
+    // return (
+    //   <div className="meetup-events-list">
+    //     {eventList}
+    //   </div>
+    // );
+
     return (
-      <div className="meetup-events-list">
+      // <div className="meetup-events-list">
+      <Accordion
+        className="meetup-events-list"
+        openMulti={false}
+      >
         {eventList}
-      </div>
+      </Accordion>
+      // </div>
     );
   }
 }

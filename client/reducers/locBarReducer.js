@@ -7,6 +7,10 @@ export default function locBar(state = {}, action) {
         .filter(office => office.name.slice(0, 13) === 'United States')
         .reduce((acc, index) => acc.concat(index.officialIndices), [])
         .map(i => officials[i]);
+        // .reduce((acc, rep) => {
+        //   Object.assign(acc, { [rep.name]: rep });
+        //   return acc;
+        // }, {});
 
       const district = offices
         .filter(office =>

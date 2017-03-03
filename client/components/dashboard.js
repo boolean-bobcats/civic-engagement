@@ -2,21 +2,43 @@ import React from 'react';
 import Map from '../containers/GoogleMapContainer';
 import Search from './meetupSearchBar';
 import EventList from './MeetupEventsList';
+import Split from 'grommet/components/Split';
+import Sidebar from 'grommet/components/Sidebar';
+import Box from 'grommet/components/Box';
+import Header from 'grommet/components/Header';
+import Title from 'grommet/components/Title';
 
 const Dashboard = () =>
   (
-    <div className="dashboard">
-      <div className="dashboard-header">
-        <h2>{'PlaceHolder'}</h2>
-      </div>
-      <div className="row">
-        <div className="column dashboard-side">
+    <Box
+      full="true"
+      className="dashboard"
+    >
+      <Header
+        className="dashboard-header"
+        fixed={false}
+      >
+        <Title>
+          Civic Meetup Event Search
+        </Title>
+      </Header>
+      <Split
+        fixed={false}
+        flex="right"
+        className="dashboard-split"
+      >
+        <Sidebar
+          className="dashboard-side"
+          size="large"
+          full={true}
+        >
           <Search className="meetup-search" />
           <EventList className="meetup-list" />
-        </div>
+        </Sidebar>
         <Map />
-      </div>
-    </div>
+      </Split>
+      <div />
+    </Box>
   );
 
 export default Dashboard;

@@ -27,7 +27,7 @@ const bingNews = {
         // console.log(index, article.image);
         const thumb = (article.image) ?
           (article.image.thumbnail) ?
-            article.image.thumbnail.contentUrl : null : null;
+            article.image.thumbnail.contentUrl : defaultThumb : defaultThumb;
 
         return {
           thumb,

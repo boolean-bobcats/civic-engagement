@@ -1,10 +1,9 @@
+import 'grommet/scss/vanilla/index.scss';
+
 import React from 'react';
 import ReduxPromise from 'redux-promise';
 import createLogger from 'redux-logger';
-
 import App from 'grommet/components/App';
-import 'grommet/scss/vanilla/index.scss';
-
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, hashHistory } from 'react-router';
@@ -23,7 +22,9 @@ const store = createStore(
 );
 
 render((
-  <App>
+  <App
+    centered={false}
+  >
     <Provider store={store}>
       <Router history={hashHistory} routes={routes} />
     </Provider>

@@ -1,4 +1,10 @@
+import _ from 'underscore';
 import shortid from 'shortid';
+
+import Box from 'grommet/components/Box';
+import Tab from 'grommet/components/Tab';
+import Tabs from 'grommet/components/Tabs';
+import Spinning from 'grommet/components/icons/Spinning';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -8,92 +14,122 @@ import RepBio from './repBio';
 import RepBillsList from './repBillsList';
 import RepVoteStats from './repVoteStats';
 
+import RepVoteStatsLineGraph from './repVoteStatsLineGraph';
+import RepVoteStatsDoughnut from './repVoteStatsDoughnut';
+
 import { bio, bills, votes } from '../actions/politicianSearchActions';
 import testing from '../actions/locationBarActions';
+
+// import { Propublica, testReps } from './defaultProps';
 
 /* this component will need a location
  * already searched and seeded into app state */
 class RepDisplay extends Component {
   constructor(props) {
     super(props);
-  // }
 
-  // componentWillMount() {
-    
-    // seed a location and some reps for testing
-    // this.props.testing('1216 broadway ny ny');
-
-    const names = [
-      'Charles E. Schumer',
-      'Kirsten E. Gillibrand',
-      'Carolyn B. Maloney'
-    ];
-    names.forEach((name) => {
+    this.state = {
+      current: null
+    };
+    console.log(props);
+    // fire off propublica actions
+    this.props.reps.forEach(({ name }) => {
       this.props.bio(name);
       this.props.bills(name);
       this.props.votes(name);
     });
-    // delete the crap above for production
-   
-    // below should work for production
-    // this.props.reps.forEach((name) => {
-    //   this.props.bio(name);
-    //   this.props.bills(name);
-    //   this.props.votes(name);
-    // });
-  }
-  // componentDidUpdate(nextProps, nextState) {
-  // componentDidMount() {
 
-  // componentWillReceiveProps(nextProps) {
-  //   // compare lengths for update conditional
-  //   const { name, News } = this.props;
-  //   if (nextProps.News[name].length > News[name].length) {
-  //     // console.log(`recieved news for ${this.props.name}`);
-  //     if (!this.state.searched) this.setState({ searched: true });
-  //   }
-  // }
+    this.handleClick = this.handleClick.bind(this);
+
+    setTimeout(() => {
+      // this.setState({ current: this.props.reps[0].name });
+      this.handleClick(this.props.reps[0].name);
+      // console.log('remove spinner: ', this.props.reps[0].name);
+    }, 1000);
+  }
+
+  handleClick(current) {
+    // console.log(current);
+    if (this.state.current !== current) {
+      this.setState({ current });
+    }
+  }
 
   render() {
-    const { reps, propublica } = this.props;
     // reps have been saved to state! this should always be populated.
-    
-    if (propublica) {
-      const display = require('underscore').map(propublica, (rep) => {
-      // const display = reps.map((rep) => {
-      //   const { name, party, phones } = rep;
-      //   const chamber = rep.urls[0].split('.').reverse()[1];
-      //   const title = (chamber === 'house') ?
-      //     'Representative' : 'Senator';
-              // googleRep={rep}
+    const { reps, propublica } = this.props;
+    /*
+      <RepBillsList
+        key={shortid.generate()}
+        rep={propublica[rep.name]}
+      />
+    */
+    const tabArray = _.map(propublica, rep =>
+      <Tab
+        key={shortid.generate()}
+        title={rep.name || ''}
+        onClick={() => this.handleClick(rep.name)}
+      />
+    );
 
-        return (
-          <div key={shortid.generate()}>
-            <RepBio
-              key={shortid.generate()}
-              propublicaRep={propublica[rep.name]}
-            />
-            <RepVoteStats
-              key={shortid.generate()}
-              rep={propublica[rep.name]}
-            />
-            <RepBillsList
-              key={shortid.generate()}
-              rep={propublica[rep.name]}
-            />
-          </div>
-        );
-      });
-      return (
-        <div>
-          <div>{display}</div>
-        </div>
-      );
-    }
-    // nothing!
-    return (<div>you should not see this usually!</div>);
+    // parse the correct obj from the GoogleResults
+    const rep = reps.filter(({ name }) => name === this.state.current)[0];
+
+    const BawksCreator = component => (
+      <Box
+        align='center'
+        pad='small'
+        margin='small'
+        basis='medium'
+      >
+        { component }
+      </Box>
+    );
+
+    return (
+      <div>
+        <Tabs>{ tabArray }</Tabs>
+        { this.state.current ? (
+          <Box
+            direction='row'
+            justify='center'
+            full={true}
+          >
+            { BawksCreator(
+              <RepBio
+                key={shortid.generate()}
+                bio={propublica[this.state.current]}
+                google={rep}
+              />
+            )}
+            { BawksCreator(
+              <RepVoteStatsLineGraph rep={propublica[this.state.current]} />
+            )}
+            { BawksCreator(
+              <RepVoteStats rep={propublica[this.state.current]} />
+            )}
+          </Box>
+        ) : (
+          <Box
+            align='center'
+          >
+            <Spinning /><br />fetching congressional activity
+          </Box>
+        )}
+      </div>
+    );
   }
 }
+
+RepDisplay.defaultProps = {
+  // propublica: Propublica,
+  // reps: testReps
+  reps: [
+      { name: 'Charles E. Schumer' },
+      { name: 'Kirsten E. Gillibrand' },
+      { name: 'Carolyn B. Maloney' }
+  ]
+};
 
 function mapStateToProps(state) {
   return {
