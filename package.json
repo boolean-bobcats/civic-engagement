@@ -3,6 +3,29 @@
   "version": "1.0.0",
   "description": "streamlined information about civic activities and opportunities to get involved, your civics portal",
   "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack -d --watch",
+    "build": "webpack -p",
+    "start": "node index.js",
+    "webdev": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcfungster/civic-engagement.git"
+  },
+  "keywords": [
+    "civics",
+    "government",
+    "protest",
+    "politics"
+  ],
+  "author": "boolean-bobcats",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mcfungster/civic-engagement/issues"
+  },
+  "homepage": "https://github.com/mcfungster/civic-engagement#readme",
   "dependencies": {
     "@google/maps": "^0.3.1",
     "axios": "^0.15.3",
@@ -68,28 +91,5 @@
     "sass-loader": "^6.0.0",
     "style-loader": "^0.13.1",
     "webpack-dev-server": "^2.4.1"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack -d --watch",
-    "build": "webpack -p",
-    "start": "nodemon index.js",
-    "webdev": "webpack-dev-server"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mcfungster/civic-engagement.git"
-  },
-  "keywords": [
-    "civics",
-    "government",
-    "protest",
-    "politics"
-  ],
-  "author": "boolean-bobcats",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mcfungster/civic-engagement/issues"
-  },
-  "homepage": "https://github.com/mcfungster/civic-engagement#readme"
+  }
 }
