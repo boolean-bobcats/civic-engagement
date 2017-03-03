@@ -25,6 +25,9 @@
   "bugs": {
     "url": "https://github.com/mcfungster/civic-engagement/issues"
   },
+  "engines": {
+    "node": "6.3.1"
+  },
   "homepage": "https://github.com/mcfungster/civic-engagement#readme",
   "dependencies": {
     "@google/maps": "^0.3.1",
