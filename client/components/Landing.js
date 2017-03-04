@@ -17,6 +17,7 @@ import Heading from 'grommet/components/Heading';
 import HeaderContainer from '../containers/headerContainer';
 
 import meetupSearch from '../actions/meetupSearchActions';
+import locationSearch from '../actions/locationBarActions';
 
 
 class Landing extends Component {
@@ -45,6 +46,7 @@ class Landing extends Component {
   onSubmit(event) {
     event.preventDefault();
     this.props.meetupSearch(this.state.input);
+    this.props.locationSearch(this.state.input);
     this.context.router.push('/dashboard');
   }
 
@@ -96,7 +98,7 @@ class Landing extends Component {
 
         <Section align="center" justify="center" colorIndex="grey-4-a" size="full" className="landing-panel2">
           <Headline align="center" size="small">
-            Content and stuff about how cool the app is etc.
+            We can’t change the country without changing our state—and we can’t change our state without changing our towns and cities. CivicsPortal is today’s soapbox meant to help you both speak up in and listen to your communitites. Sign up, and make local politics sexy again.
           </Headline>
         </Section>
         <Section align="center" justify="center" colorIndex="neutral-1-a" size="full" className="landing-team">
@@ -139,4 +141,4 @@ function mapStateToProps(state) { // Temporary state setup. Please feel free to 
   };
 }
 
-export default connect(mapStateToProps, { meetupSearch })(Landing);
+export default connect(mapStateToProps, { locationSearch, meetupSearch })(Landing);

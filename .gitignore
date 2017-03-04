@@ -40,7 +40,6 @@ jspm_packages
 .env
 
 # babel-compiled file(s)
-client/dist/
 
 client/debug.js
 client/components/defaultProps.js
